@@ -1,5 +1,5 @@
 declare -A s_dict
-a=()
+arr=()
 echo "enter number 1"
 read a
 echo "number 2"
@@ -23,13 +23,13 @@ echo "$s_dict"
 
 for i in $s_dict
 do
-	a=$i
+	arr=$i
 done
-echo "$a"
+echo "${arr[*]}"
 
-
-
-
+#echo "Array in original order"
+arrAsc=($(for l in ${arr[@]}; do echo $l; done | sort))
+#arrDsc=($(for j in ${arr[@]}; do echo $j; done | sort -r))
 
 
 
