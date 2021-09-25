@@ -1,0 +1,85 @@
+arr=(10 8 20 100 12)
+  
+echo "sort an array"
+echo "Array in original order"
+echo ${arr[*]}
+  
+# Performing Bubble sort 
+for ((i = 0; i<5; i++))
+do
+      
+    for((j = 0; j<5-i-1; j++))
+    do
+      
+        if [ ${arr[j]} -gt ${arr[$((j+1))]} ]
+        then
+            # swap
+            temp=${arr[j]}
+            arr[$j]=${arr[$((j+1))]}  
+            arr[$((j+1))]=$temp
+        fi
+    done
+done
+  
+echo "Array in sorted order :"
+echo ${arr[*]}
+
+echo ""
+echo ""
+#shell script to print numbers 1 to 100
+#using for loop
+
+for((i=1;i<=100;i++))
+do
+    echo $i
+done
+
+
+echo ""
+echo ""
+echo ""
+echo "2. palindrom 0-100"
+CONT=0
+
+## This array will hold the numbers we've seen
+## uncomment this line for unique numbers
+#declare -a seen;
+while [ "$CONT" -lt 100 ] 
+do
+    ## Get a random number
+    NUM=$RANDOM
+    ## Make sure it is < 100
+    let "NUM %= 100"
+    ## Make sure the number is more than 10
+    while [ "$NUM" -le 10 ]
+    do
+        NUM=$((NUM+1))
+    done
+    ## In case the addition made it longer than two digits
+    NUM="${NUM:0:2}"
+    ## Make sure the number does not end in 0
+    ## If it does, we will get an error when
+    ## attempting to add it. Bash doesn't
+    ## like leading 0s. 
+    [[ $NUM =~ 0$ ]] && let NUM++
+    ## Sum the number and its reverse
+    SUM=$((NUM+$(rev <<<$NUM)));
+
+    ## Is this a palindrome?
+    if [ "$SUM" = "$(rev <<<$SUM)" ]
+    then
+        ## You did not say if you wanted 100 different
+        ## numbers. If so, uncomment these lines
+        #let seen[$SUM]++
+        ## If this number has not been seen before
+        #if [ "${seen[$SUM]}" -eq 1 ]
+        #   then
+        ## print it
+        echo $SUM
+        ## increment the counter
+        let CONT++
+        #fi
+    fi
+echo ""
+echo ""
+
